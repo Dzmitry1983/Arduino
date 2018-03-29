@@ -255,39 +255,31 @@ void loop()
 	}
 }
 
+/*
+ * Function wich change pwm level if sound_up or sound_down were clicked
+ */
 bool updatePMW(EnumButtonType buttonType, int &pwm_value) 
 {
-	bool returnValue = false;
+	bool returnValue = true;
 	switch (buttonType) {
 		case EnumButtonTypeLevelUp:
-		if (pwm_value < MAX_PMW) {
 			pwm_value = min(pwm_value + SMALL_PMW_STEP, MAX_PMW);
-			returnValue = true;
-		}
 		break;
 		case EnumButtonTypeLevelDown:
-		if (pwm_value > MIN_PMW) {
 			pwm_value = max(pwm_value - SMALL_PMW_STEP, MIN_PMW);
-			returnValue = true;
-		}
 		break;
 		case EnumButtonTypeLevelUpBig:
-		if (pwm_value < MAX_PMW) {
 			pwm_value = min(pwm_value + BIG_PMW_STEP, MAX_PMW);
-			returnValue = true;
-		}
 		break;
 		case EnumButtonTypeLevelDownBig:
-		if (pwm_value > MIN_PMW) {
 			pwm_value = max(pwm_value - BIG_PMW_STEP, MIN_PMW);
-			returnValue = true;
-		}
 		break;
 		default:
+			returnValue = false;
 		break;
 	}
 	
-	return true;
+	return returnValue;
 }
 
 
